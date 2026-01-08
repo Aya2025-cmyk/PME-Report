@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Dépenses - PME Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>PME Report</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Tableau de bord</span>
+            </a>
+            <a href="sales.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Ventes</span>
+            </a>
+            <a href="clients.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Clients</span>
+            </a>
+            <a href="expenses.html" class="nav-item active">
+                <i class="fas fa-receipt"></i>
+                <span>Dépenses</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button onclick="logout()" class="btn btn-secondary btn-small">
+                <i class="fas fa-sign-out-alt"></i>
+                Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>Gestion des Dépenses</h1>
+            <button onclick="openExpenseModal()" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Nouvelle dépense
+            </button>
+        </header>
+
+        <div class="content-card">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Catégorie</th>
+                            <th>Montant</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesTable">
+                        <tr class="no-data">
+                            <td colspan="5">Aucune dépense enregistrée</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Nouvelle Dépense -->
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nouvelle dépense</h3>
+                <button onclick="closeExpenseModal()" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="expenseForm" class="modal-form">
+                <div class="form-group">
+                    <label for="expenseDate">Date</label>
+                    <input type="date" id="expenseDate" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expenseDescription">Description</label>
+                    <input type="text" id="expenseDescription" name="description" placeholder="Description de la dépense" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expenseCategory">Catégorie</label>
+                    <select id="expenseCategory" name="category" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="Bureau">Bureau</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Équipement">Équipement</option>
+                        <option value="Fournitures">Fournitures</option>
+                        <option value="Services">Services</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expenseAmount">Montant (€)</label>
+                    <input type="number" id="expenseAmount" name="amount" step="0.01" placeholder="0.00" required>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" onclick="closeExpenseModal()" class="btn btn-secondary">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            loadExpenses();
+            
+            // Set today's date as default
+            document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - PME Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>PME Report</span>
+                </div>
+                <h2>Connexion</h2>
+                <p>Accédez à votre tableau de bord</p>
+            </div>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                
+                <div id="signupFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmer le mot de passe</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="companyName">Nom de l'entreprise</label>
+                        <input type="text" id="companyName" name="companyName" placeholder="Nom de votre entreprise">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Se connecter</button>
+                
+                
+            </form>
+            
+            <div class="auth-footer">
+                <div class="auth-toggle">
+                    <span id="toggleText">Pas encore de compte ?</span>
+                    <a href="#" id="toggleMode">Créer un compte</a>
+                </div>
+                <a href="index.html">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Clients - PME Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>PME Report</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Tableau de bord</span>
+            </a>
+            <a href="sales.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Ventes</span>
+            </a>
+            <a href="clients.html" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>Clients</span>
+            </a>
+            <a href="expenses.html" class="nav-item">
+                <i class="fas fa-receipt"></i>
+                <span>Dépenses</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button onclick="logout()" class="btn btn-secondary btn-small">
+                <i class="fas fa-sign-out-alt"></i>
+                Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>Gestion des Clients</h1>
+            <button onclick="openClientModal()" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Nouveau client
+            </button>
+        </header>
+
+        <div class="content-card">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Entreprise</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientsTable">
+                        <tr class="no-data">
+                            <td colspan="5">Aucun client enregistré</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Nouveau Client -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nouveau client</h3>
+                <button onclick="closeClientModal()" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="clientForm" class="modal-form">
+                <div class="form-group">
+                    <label for="clientName">Nom complet</label>
+                    <input type="text" id="clientName" name="name" placeholder="Jean Dupont" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientEmail">Email</label>
+                    <input type="email" id="clientEmail" name="email" placeholder="jean@exemple.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientPhone">Téléphone</label>
+                    <input type="tel" id="clientPhone" name="phone" placeholder="01 23 45 67 89">
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientCompany">Entreprise</label>
+                    <input type="text" id="clientCompany" name="company" placeholder="Nom de l'entreprise">
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" onclick="closeClientModal()" class="btn btn-secondary">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            loadClients();
+        });
+    </script>
+</body>
+</html>
